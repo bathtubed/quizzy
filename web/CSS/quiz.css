@@ -7,5 +7,20 @@
 {
     padding-left: 0px;
     float: none;
+    border-style: dashed;
+    margin-right: 0px;
+    width: auto;
 }
 
+.question
+{
+    text-align: left;
+    margin: 20px 20px 20px 20px;
+
+}
+
+#question0
+{
+    text-align: center;
+    margin: 40px 40px 40px 40px;
+}

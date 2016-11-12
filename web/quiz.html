@@ -8,20 +8,35 @@
 <body>
 
 <div id="container">
+
     <div id="header">
         <h1>Quizzy</h1>
     </div>
+    
     <div id="content">
         <div id="main">
-            <form name="quiz" id="quiz">
-                <div id="question0" class="free_response">
-                    <p class="question">Write Hello World</p>
-                    <textarea name="question0" form="quiz" wrap="soft" cols="90" rows="30"></textarea>
+            <form name="quiz" class = "prompt" id="quiz">
+            <p class="question">(12 points) Write a function called is_earlier that takes as arguments two times, each represented as a
+            two-part tuple containing an integer hour and a string that is either 'AM' or 'PM' (assume this string is in all
+            capital letters). The function should return -1 if the first time is earlier in the day than the second time. It
+            should return 0 if they are the same time, and it should return 1 if the first time is later in the day than the
+            second time. Note that midnight is 12AM and noon is 12PM.<br> 
+            As examples, the following two calls should return -1:<br>
+            is_earlier( (12, 'AM'), (4, 'AM') )<br>
+            is_earlier( (5, 'AM'), (3, 'PM') )<br>
+            while the following call should return 0:<br>
+            is_earlier( (2, 'PM'), (2, 'PM') )<br>
+            and finally, the following calls should return 1:<br>
+            is_earlier( (3, 'PM'), (12, 'PM') )<br>
+            is_earlier( (5, 'PM'), (5, 'AM') )</p>
                 </div>
-            </ul>
-        </div>
-        <div id="footer">
-            Copyright &copy; 2016 Adam, Eric, Lucas, Shashank
+        
+            <div id="question0" class="free_response">
+                <textarea name="question0" form="quiz" wrap="soft" cols="90" rows="30"></textarea>
+            </div>
+            
+            <div id="footer">
+                Copyright &copy; 2016 Adam, Eric, Lucas, Shashank
         </div>
     </div>
 </div>
