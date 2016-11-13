@@ -32,11 +32,8 @@ def getExam(root, examId):
 	start = datetime.datetime.strptime(start, '%Y-%m-%d %H:%M:%S')
 	end = datetime.datetime.strptime(end, '%Y-%m-%d %H:%M:%S')
 	allQs = whole["questions"]
-	d = {}
-	for i in range(len(allQs)):
-		d[allQs[i]['id']] = allQs[i]["data"]
 		
-	exam = Exam(examId, start, end, d)
+	exam = Exam(examId, start, end, allQs)
 	return exam
 			
 

@@ -14,6 +14,9 @@
     <script src="{% static "quizzy_app/JS/codemirror.js" %}"></script>
     <link rel="stylesheet" href="{% static "quizzy_app/CSS/codemirror.css" %}">
     
+    <script>
+        var language = {{exam.language}}
+    </script>
     <script src="{% static "quizzy_app/JS/script.js" %}"></script>
 </head>
 <body>
@@ -28,12 +31,12 @@
     <div id="content">
         <div id="main">
             <form name="quiz" class = "prompt" id="quiz" method="POST">
-            {% for question_id, question in exam.questions %}
-                <div id="{{ question_id }}" class="free_response">
+            {% for question in exam.questions %}
+                <div id="{{ question.id }}" class="free_response">
                     <p class="question">
-                        {{ question }}
+                        {{ question.data }}
                     </p>
-                    <textarea class="answer" name="{{ question_id }}" form="quiz" wrap="soft" cols="90" rows="30"></textarea>
+                    <div class="answerwrapper"> <textarea class="answer" name="{{ question.id }}" form="quiz" wrap="soft" cols="90" rows="30"></textarea></div>
                 </div>
             {% endfor %}
             </form>
