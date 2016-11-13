@@ -2,24 +2,23 @@
 <html>
 <head>
     <title>HACKRPI Website</title>
-    <link type="text/css" rel="stylesheet" href="css/waitingpage.css"/>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static "quizzy_app/CSS/style.css" %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static "quizzy_app/CSS/waitingpage.css" %}"/>
 </head>
 <body>
-
 <div id="container">
     <div id="header">
         <h1>Quizzy</h1>
     </div>
     <div id="content">
         <div id="main">
-            <h1>The test is not ready yet<br>
+            <h1>The exam "{{exam_name}}" will begin at {{start time}} <br>
                 Please wait...
             </h1>
         </div>
-
         <div id="footer">
             Copyright &copy; 2016 Adam, Eric, Lucas, Shashank
-
         </div>
     </div>
 </div>
