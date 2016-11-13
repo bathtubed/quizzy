@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 import quizzy_app.answerFunctions as exam_lib
 from django.conf import settings
 import datetime
@@ -11,8 +13,9 @@ def get_exam(examID):
     return exam_lib.getExam(root, examID)
 
 def get_user(cookie):
-    return 'eric'
+    return 'ebonyWilliams'
 
+@ensure_csrf_cookie
 def index(request):
     if request.method == 'GET':
         params = request.GET
@@ -24,11 +27,11 @@ def index(request):
     end_time = exam_data.end_time
     server_time = datetime.datetime.now()
     
-    generateAnswersFolder(exam_data);
+    exam_lib.generateAnswersFolder(root, exam_data)
     
     if server_time < start_time:
         if request.method == 'POST':
-            return HttpResponse("You cannot submit at this time", status_code=400);
+            return HttpResponse("You cannot submit at this time", status=400);
         displayed_start = start_time
         template = loader.get_template('quizzy_app/waitingpage.html')
         context = {
@@ -38,11 +41,11 @@ def index(request):
     
     elif request.method == 'POST':
         try:
-            updateAns(root, params["examID"], get_user(request.COOKIES['sess_id']), params["questionID"], params["answer"])
+            exam_lib.updateAns(root, params["examID"], get_user("abc"), params["questionID"], params["answer"])
         except:
-            return HttpResponse("Couldn't save file", status_code=500);
+            return HttpResponse("Couldn't save file at " + params["examID"] + '/' + get_user("abc") + '/' + params["questionID"] + " with " + params["answer"], status=500);
         
-        return HttpResponse("Answer Saved", status_code=200)
+        return HttpResponse("Answer Saved", status=200)
     else:
         exam_object = exam_data
         template = loader.get_template('quizzy_app/index.html')

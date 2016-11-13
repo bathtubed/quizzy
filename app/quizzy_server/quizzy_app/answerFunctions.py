@@ -1,6 +1,9 @@
 import os
 import json
 import datetime
+import logging
+
+logger = logging.getLogger(__name__)
 
 class Exam:
 	def __init__(self, eID, cID, start, end, q, lang):
@@ -12,26 +15,23 @@ class Exam:
 		self.language = lang
 
 def newTest(root, examId, studentNames, qIds):
-	if not os.path.exists(root+'/'+'responses'+'/'+str(examId)):
-		os.makedirs(root+'/'+'responses'+'/'+str(examId))
-    else
-        return False
+    if not os.path.exists(root+'/'+'responses'+'/'+str(examId)):
+        os.makedirs(root+'/'+'responses'+'/'+str(examId))
+    
 	for i in range(len(studentNames)):
 		name = studentNames[i]
 		if not os.path.exists(root+'/'+'responses'+'/'+str(examId)+'/'+name):
 			os.makedirs(root+'/'+'responses'+'/'+str(examId)+'/'+name)
-		for j in range(qIds):
-			open(root+'/'+'responses'+'/'+str(examId)+'/'+name+'/'+str(j), 'w')	
+		for j in qIds:
+			open(root+'/'+'responses'+'/'+str(examId)+'/'+name+'/'+j["id"], 'w')	
             
     return True
 
-def generateAnswersFolder(root, exam):
-    return newTest(root, exam.ID, getCourse(root, exam.course).roster, exam.questions)
 			
 def updateAns(root, examId, name, question, answer):
-	target = open(root+'/'+'responses'+'/'+str(examId)+'/'+name+'/'+str(question), 'w')
-	target.truncate()
-	target.write(answer)
+    target = open(root+'/'+'responses'+'/'+str(examId)+'/'+name+'/'+str(question), 'w')
+    target.truncate()
+    target.write(answer)
 
 def getExam(root, examId):
 	e = open(root+'/'+'exams'+'/'+examId+'.json', 'r')
@@ -54,15 +54,16 @@ class Course:
 		self.roster = rost
 
 def getCourse(root, courseId):
-	c = open(root+'/'+'courses'+'/'+'course'+courseId+'.json', 'r')
+	c = open(root+'/'+'courses'+'/'+courseId+'.json', 'r')
 	whole = json.load(c)
 	c = whole["course"]
 	r = whole["roster"]
 	course = Course(c, courseId, r)
 	return course
 	
-	
-			
+
+def generateAnswersFolder(root, exam):
+    return newTest(root, exam.ID, getCourse(root, exam.course).roster, exam.questions)
 
 	
 
