@@ -29,7 +29,7 @@ def index(request):
     
     exam_lib.generateAnswersFolder(root, exam_data)
     
-    if server_time < start_time:
+    if server_time < start_time or server_time > end_time:  # this cannot be submitted
         if request.method == 'POST':
             return HttpResponse("You cannot submit at this time", status=400);
         displayed_start = start_time

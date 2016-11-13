@@ -31,6 +31,7 @@
     
     <div id="content">
         <div id="main">
+            <div id="countdown">{{ exam.end_time }}</div>
             <form name="quiz" class = "prompt" id="quiz" method="POST">
             {% for question in exam.questions %}
                 <div id="{{ question.id }}" class="free_response">
@@ -38,7 +39,7 @@
                         {{ question.data }}
                     </p>
                     <div class="answerwrapper"> <textarea class="answer" name="{{ question.id }}" form="quiz" wrap="soft" cols="90" rows="30"></textarea></div>
-                    <p class="status"></p>
+                    <p class="status">Unsaved</p>
                 </div>
             {% endfor %}
             </form>
