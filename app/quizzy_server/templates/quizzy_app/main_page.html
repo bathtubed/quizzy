@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HACKRPI Website</title>
+    <link type="text/css" rel="stylesheet" href="{% static "quizzy_app/CSS/style.css" %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static "quizzy_app/CSS/waitingpage.css" %}"/>
+</head>
+<body>
+<div id="container">
+    <div id="header">
+        <h1>Quizzy</h1>
+    </div>
+    <div id="content">
+        <div id="main">
+            <h3>Quizzy is designed to be an online platform for students to take tests.<br>
+            We spent 24 hours straight coding this, so please enjoy it. We died on the<br>
+                inside trying to build this for you guys. You can log in below.<br>
+            <br>
+            <form action="">
+            Email: <input type="text" name="user"><br>
+            Password: <input type="password" name="password">
+            </form>
+            </h3>
+            <h1 class = "text"><button type="button">Log in</button>
+            </h1>
+        </div>
+        
+        <style>
+        #header {
+            background-color: #0066ff;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #footer {
+            clear: both;
+            padding: 10px;
+            background-color: #999999;
+            color: white;
+            text-align: right;
+        }
+        #main{
+        padding: 20px 20px 20px 20px;
+        }
+        </style>
+    <div id="footer">
+    Copyright &copy; 2016 Adam, Eric, Lucas, Shashank
+    </div>    
+    </div>
+</div>
+</body>
+</html>
