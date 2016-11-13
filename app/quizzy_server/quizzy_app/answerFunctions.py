@@ -3,8 +3,9 @@ import json
 import datetime
 
 class Exam:
-	def __init__(self, ID, start, end, q, lang):
-		self.ID = ID
+	def __init__(self, eID, cID, start, end, q, lang):
+		self.ID = eID
+		self.course = cID
 		self.start_time = start
 		self.end_time = end
 		self.questions = q
@@ -28,15 +29,32 @@ def updateAns(root, examId, name, question, answer):
 def getExam(root, examId):
 	e = open(root+'/'+'exams'+'/'+examId+'.json', 'r')
 	whole = json.load(e)
+	course = whole["course"]
 	start = whole["startTime"]
 	end = whole["endTime"]
 	lang = whole["language"]
 	start = datetime.datetime.strptime(start, '%Y-%m-%d %H:%M:%S')
 	end = datetime.datetime.strptime(end, '%Y-%m-%d %H:%M:%S')
 	allQs = whole["questions"]
-		
-	exam = Exam(examId, start, end, allQs, lang)
+	exam = Exam(examId, course, start, end, allQs, lang)
 	return exam
+
+
+class Course:
+	def __init__(self, name, ID, rost):
+		self.name = name
+		self.ID = ID
+		self.roster = rost
+
+def roster(root, courseId):
+	c = open(root+'/'+'courses'+'/'+'course'+courseId+'.json', 'r')
+	whole = json.load(c)
+	c = whole["course"]
+	r = whole["roster"]
+	course = Course(c, courseId, r)
+	return course
+	
+	
 			
 
 	
