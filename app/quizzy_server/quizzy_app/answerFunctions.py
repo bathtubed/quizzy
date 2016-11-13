@@ -3,11 +3,12 @@ import json
 import datetime
 
 class Exam:
-	def __init__(self, ID, start, end, q):
+	def __init__(self, ID, start, end, q, lang):
 		self.ID = ID
 		self.start_time = start
 		self.end_time = end
-		self.questions = q		
+		self.questions = q
+		self.language = lang
 
 def newTest(root, examId, studentNames, qIds):
 	if not os.path.exists(root+'/'+'responses'+'/'+str(examId)):
@@ -29,11 +30,12 @@ def getExam(root, examId):
 	whole = json.load(e)
 	start = whole["startTime"]
 	end = whole["endTime"]
+	lang = whole["language"]
 	start = datetime.datetime.strptime(start, '%Y-%m-%d %H:%M:%S')
 	end = datetime.datetime.strptime(end, '%Y-%m-%d %H:%M:%S')
 	allQs = whole["questions"]
 		
-	exam = Exam(examId, start, end, allQs)
+	exam = Exam(examId, start, end, allQs, lang)
 	return exam
 			
 
