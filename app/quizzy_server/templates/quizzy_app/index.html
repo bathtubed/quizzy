@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{% static "quizzy_app/CSS/codemirror.css" %}">
     
     <script>
-        var language = {{exam.language}}
+        var language = "{{ exam.language }}";
     </script>
     <script src="{% static "quizzy_app/JS/script.js" %}"></script>
 </head>
