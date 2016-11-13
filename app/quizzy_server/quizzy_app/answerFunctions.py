@@ -14,12 +14,19 @@ class Exam:
 def newTest(root, examId, studentNames, qIds):
 	if not os.path.exists(root+'/'+'responses'+'/'+str(examId)):
 		os.makedirs(root+'/'+'responses'+'/'+str(examId))
+    else
+        return False
 	for i in range(len(studentNames)):
 		name = studentNames[i]
 		if not os.path.exists(root+'/'+'responses'+'/'+str(examId)+'/'+name):
 			os.makedirs(root+'/'+'responses'+'/'+str(examId)+'/'+name)
 		for j in range(qIds):
 			open(root+'/'+'responses'+'/'+str(examId)+'/'+name+'/'+str(j), 'w')	
+            
+    return True
+
+def generateAnswersFolder(root, exam):
+    return newTest(root, exam.ID, getCourse(root, exam.course).roster, exam.questions)
 			
 def updateAns(root, examId, name, question, answer):
 	target = open(root+'/'+'responses'+'/'+str(examId)+'/'+name+'/'+str(question), 'w')
@@ -46,7 +53,7 @@ class Course:
 		self.ID = ID
 		self.roster = rost
 
-def roster(root, courseId):
+def getCourse(root, courseId):
 	c = open(root+'/'+'courses'+'/'+'course'+courseId+'.json', 'r')
 	whole = json.load(c)
 	c = whole["course"]
