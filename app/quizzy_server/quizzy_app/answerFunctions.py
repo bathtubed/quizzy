@@ -15,8 +15,8 @@ class Exam:
 		self.language = lang
 
 def newTest(root, examId, studentNames, qIds):
-    if not os.path.exists(root+'/'+'responses'+'/'+str(examId)):
-        os.makedirs(root+'/'+'responses'+'/'+str(examId))
+	if not os.path.exists(root+'/'+'responses'+'/'+str(examId)):
+		os.makedirs(root+'/'+'responses'+'/'+str(examId))
     
 	for i in range(len(studentNames)):
 		name = studentNames[i]
@@ -24,14 +24,13 @@ def newTest(root, examId, studentNames, qIds):
 			os.makedirs(root+'/'+'responses'+'/'+str(examId)+'/'+name)
 		for j in qIds:
 			open(root+'/'+'responses'+'/'+str(examId)+'/'+name+'/'+j["id"], 'w')	
-            
-    return True
+	return True
 
 			
 def updateAns(root, examId, name, question, answer):
-    target = open(root+'/'+'responses'+'/'+str(examId)+'/'+name+'/'+str(question), 'w')
-    target.truncate()
-    target.write(answer)
+	target = open(root+'/'+'responses'+'/'+str(examId)+'/'+name+'/'+str(question), 'w')
+	target.truncate()
+	target.write(answer)
 
 def getExam(root, examId):
 	e = open(root+'/'+'exams'+'/'+examId+'.json', 'r')
@@ -63,7 +62,7 @@ def getCourse(root, courseId):
 	
 
 def generateAnswersFolder(root, exam):
-    return newTest(root, exam.ID, getCourse(root, exam.course).roster, exam.questions)
+	return newTest(root, exam.ID, getCourse(root, exam.course).roster, exam.questions)
 
 	
 
