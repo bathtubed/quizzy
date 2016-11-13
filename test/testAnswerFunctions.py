@@ -1,57 +1,18 @@
-import os
-import json
-import datetime
+root = "data"
+exam = 1
+studentNames = ["Shashank", "Lucas", "Eric", "Adam"]
+qIds = 3
+newTest(root, exam, studentNames, qIds)
+str1 = "111111111111111111111"
+str2 = "222222222222222222222"
+str3 = "333333333333333333333"
 
-class Exam:
-	def __init__(self, ID, start, end, q):
-		self.ID = ID
-		self.start_time = start
-		self.end_time = end
-		self.questions = q		
+updateAns(root, exam, studentNames[0], 0, str1)
+updateAns(root, exam, studentNames[0], 0, str2)
+updateAns(root, exam, studentNames[0], 0, str3)
 
-def newTest(root, examId, studentNames, qIds):
-	if not os.path.exists(root+'/'+'responses'+'/'+str(examId)):
-		os.makedirs(root+'/'+'responses'+'/'+str(examId))
-	for i in range(len(studentNames)):
-		name = studentNames[i]
-		if not os.path.exists(root+'/'+'responses'+'/'+str(examId)+'/'+name):
-			os.makedirs(root+'/'+'responses'+'/'+str(examId)+'/'+name)
-		for j in range(qIds):
-			open(root+'/'+'responses'+'/'+str(examId)+'/'+name+'/'+str(j), 'w')	
-			
-def updateAns(root, examId, name, question, answer):
-	target = open(root+'/'+'responses'+'/'+str(examId)+'/'+name+'/'+str(question), 'w')
-	target.truncate()
-	target.write(answer)
-
-def getExam(root, examId):
-	e = open(root+'/'+'exams'+'/'+examId+'.json', 'r')
-	whole = json.load(e)
-	start = whole["startTime"]
-	end = whole["endTime"]
-	datetime.datetime.strptime(start, '%Y-%m-%d %H:%M:%S')
-	datetime.datetime.strptime(end, '%Y-%m-%d %H:%M:%S')
-	allQs = whole["questions"]
-	d = {}
-	for i in range(len(allQs)):
-		d[allQs[i]['id']] = allQs[i]["data"]
-		
-	exam = Exam(examId, start, end, d)
-	return exam
-				
-	
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
+print (getExam(root, 'exam1')).questions['0']
+print (getExam(root, 'exam1')).questions['1']
+print (getExam(root, 'exam1')).questions['2']
+print (getExam(root, 'exam1')).start_time
+print (getExam(root, 'exam1')).end_time	
