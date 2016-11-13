@@ -13,7 +13,7 @@
 
 .question
 {
-    border-style: dashed;
+    border-style: outset;
     text-align: left;
     padding: 20px 20px 20px 20px;
     width: auto;
