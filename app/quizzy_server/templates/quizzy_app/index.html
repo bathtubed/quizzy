@@ -28,7 +28,7 @@
     <div id="content">
         <div id="main">
             <form name="quiz" class = "prompt" id="quiz" method="POST">
-            {% for question_id, question in questions %}
+            {% for question_id, question in exam.questions %}
                 <div id="{{ question_id }}" class="free_response">
                     <p class="question">
                         {{ question }}
